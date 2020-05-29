@@ -1,0 +1,9 @@
+---
+nios_record_name: "{{ application_fqdn }}"
+nios_tenant_attr: "{{ application_tenant }}"
+nios_record_state: "{{ application_state|default('present') }}"
+nios_provider:
+  host: "{{nios_host}}"
+  username: "{{nios_user}}"
+  password: "{{nios_password}}"
+  validate_certs: false

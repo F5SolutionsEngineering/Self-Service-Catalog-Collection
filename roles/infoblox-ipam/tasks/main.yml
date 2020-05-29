@@ -1,0 +1,31 @@
+---
+- name: Manage DNS record with InfoBlox NIOS
+  block:
+    - set_fact:
+        nios_record_exists: "{{ lookup('nios', 'record:host', filter={'name': nios_record_name }, return_fields=['ipv4addrs'], provider=nios_provider)|length >0|bool }}"
+
+    - nios_host_record:
+        name: "{{ nios_record_name }}"
+        ipv4:
+          - address: "{{ lookup('nios_next_ip', nios_ipv4_network, provider=nios_provider)[0] }}"
+        provider: "{{ nios_provider }}"
+      when: not nios_record_exists
+
+    - set_fact:
+        _job_virtual_address: "{{ lookup('nios', 'record:host', filter={'name': nios_record_name }, provider=nios_provider)['ipv4addrs'][0]['ipv4addr'] }}"
+  
+  when: nios_record_state == 'present'
+
+- name: Delete DNS record from InfoBlox NIOS
+  block:
+    - nios_host_record:
+        name: "{{ nios_record_name }}"
+        state: absent
+        provider: "{{ nios_provider }}"
+      
+  when: nios_record_state == 'absent'
+
+
+
+
+
