@@ -1,4 +1,4 @@
-# SSportal_collection
+# SScatalog_collection
 This repo contains an Ansible Galaxy collection for SSportal targeted use cases.
 <MORE>
 
