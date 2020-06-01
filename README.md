@@ -24,7 +24,7 @@ This repo contains an Ansible Galaxy collection for SSportal targeted use cases.
 
 ## Contribution Guidelines
 Please feel free to add functionality to this collection for your customer's use case.
-If you'd like assistance, contact the repo maintainers or create an issue here.
+If you'd like assistance, contact the repo maintainers or create an issue.
 
 Contributions should be made through pull requests which should then be approved by one or more maintainers.
 <MORE>
@@ -36,5 +36,18 @@ Roles included in this collection should be documented in this section.
 
 ### CFSSL Certificate Request
 
-### 
+### AS3 Deploy
+
+## Future Roles
+
+### ACME Client for TLS Certificates
+
+### Essential App Protect
+
+### BIG-IP DNS GSLB
+
+### F5CS GSLB
+
+## TBD
+
 
