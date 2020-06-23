@@ -1,0 +1,15 @@
+namespace: f5solutionsengineering
+name: ss_cat
+version: 0.1
+readme: README.md
+authors:
+- Kevin Reynolds (@kreynoldsf5)
+description: Collection used for F5solutionengineering/Self-Service-Catalog-Examples
+license_file: LICENSE
+tags:
+  - f5
+dependencies: {}
+repository: https://github.com/F5SolutionsEngineering/Self-Service-Catalog-Collection
+documentation: https://github.com/F5SolutionsEngineering/Self-Service-Catalog-Collection
+homepage: https://github.com/F5SolutionsEngineering/Self-Service-Catalog-Collection
+issues: https://github.com/F5SolutionsEngineering/Self-Service-Catalog-Collection/issues
