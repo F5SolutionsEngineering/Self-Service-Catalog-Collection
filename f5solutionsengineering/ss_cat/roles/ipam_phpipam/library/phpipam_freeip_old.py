@@ -129,8 +129,7 @@ def main():
             subnet=dict(type=str, required=True),
             section=dict(type=str, required=True),
             hostname=dict(type=str, required=False),
-            description=dict(type=str, required=False),
-            state=dict(default='present', choices=['present', 'absent'])
+            description=dict(type=str, required=False)
         ),
         supports_check_mode=False
     )
@@ -145,7 +144,6 @@ def main():
     section = module.params['section']
     hostname = module.params['hostname']
     description = module.params['description']
-    state = module.params['state']
 
     session = PhpIpamWrapper(username, password, url)
     try:
@@ -153,44 +151,22 @@ def main():
     except AttributeError:
         module.fail_json(msg='Error getting authorization token', **result)
     subnet_response = session.get_subnet(subnet, section)
-
-    if state == 'present':
-        if subnet_response:
-            url += 'addresses/first_free/'
-            subnet_id = session.get_subnet_id(subnet, section)
-            payload = urllib.urlencode({'subnetId': subnet_id,
-                                        'hostname': hostname,
-                                        'description': description})
-            free_ip = json.load(session.post(url, payload))
-            if free_ip['success']:
-                ip = free_ip['data']
-                result['ip'] = ip
-                result['output'] = free_ip
-                module.exit_json(**result)
-            else:
-                module.fail_json(msg='Subnet is full', **result)
-        else:
-            module.fail_json(msg='Subnet or section doesn\'t exist', **result)
-    else:
-        #Delete based on hostname
-        ip_id = session.get_ip_hostame(hostname)
-        deleteip_url = url + 'addresses/%s/' % ip_id
-        try:
-            deletion = session.remove(
-                session,
-                deleteip_url,
-                ip_id
-            )
-            if deletion['code'] == 200:
-                result['changed'] = True
-                result['output'] = deletion
-                module.exit_json(**result)
-        except KeyError:
-            result['ouput'] = 'IP did not exist'
+    if subnet_response:
+        url += 'addresses/first_free/'
+        subnet_id = session.get_subnet_id(subnet, section)
+        payload = urllib.urlencode({'subnetId': subnet_id,
+                                    'hostname': hostname,
+                                    'description': description})
+        free_ip = json.load(session.post(url, payload))
+        if free_ip['success']:
+            ip = free_ip['data']
+            result['ip'] = ip
+            result['output'] = free_ip
             module.exit_json(**result)
-        except TypeError:
-            result['output'] = 'IP did not exist'
-            module.exit_json(**result)       
+        else:
+            module.fail_json(msg='Subnet is full', **result)
+    else:
+        module.fail_json(msg='Subnet or section doesn\'t exist', **result)
 
 
 if __name__ == '__main__':
