@@ -39,7 +39,7 @@ collections:
 - name: 'https://github.com/F5SolutionsEngineering/Self-Service-Catalog-Collection/releases/<<MORE>>'
 ```
 
-The collection namespace, as determined by ``galaxy.yml``, will be "ss-cat".
+The collection namespace, as determined by ``galaxy.yml``, will be "f5-ss-cat".
 
 ## Contribution Guidelines
 Please feel free to add functionality to this collection for your customer's use case.

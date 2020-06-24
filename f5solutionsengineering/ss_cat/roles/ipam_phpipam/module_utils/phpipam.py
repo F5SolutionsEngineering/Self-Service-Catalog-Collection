@@ -80,6 +80,21 @@ class PhpIpamWrapper(urls.Request):
         except TypeError:
             return None
 
+    def get_ip_hostname(self, hostname):
+        url = self.url + 'addresses/search_hostname/%s/' % hostname
+        ip_response = json.load(self.get(url))
+        try:
+            return ip_response['data'][0]['id']
+        except KeyError:
+            return None
+        except TypeError:
+            return None
+
+    def remove_ip(self, session, subnet, section, ip):
+        subnetid = self.get_subnet_id(subnet, section)
+        result = json.loads(session.delete(url))
+        return result
+
     def create(self, session, url, **kwargs):
         payload = urllib.urlencode(dict(**kwargs))
         result = json.load(session.post(url, data=payload))
@@ -94,3 +109,4 @@ class PhpIpamWrapper(urls.Request):
         payload = urllib.urlencode({'id': id})
         result = json.load(session.delete(url, data=payload))
         return result
+    
