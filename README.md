@@ -6,7 +6,7 @@ This repo contains an Ansible Galaxy collection for SSportal targeted use cases.
 ["Developing Collections" Documentation](https://docs.ansible.com/ansible/latest/dev_guide/developing_collections.html) 
 
 ## Directory Structure
-Roles in this repository should follow the Ansible role directory structure standard. 
+Roles in this repository should follow the Ansible collection directory structure standard. 
 ```shell
 .
 collection/
