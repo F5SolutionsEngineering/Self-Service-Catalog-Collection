@@ -1,2 +1,11 @@
 ---
-# tasks file for ipam-phpipam
+- name: Manage IP address with phpIPAM
+  phpipam_freeip:
+    username: "{{ phpIPAM_username }}"
+    password: "{{ phpIPAM_password }}"
+    url: "{{ phpIPAM_url }}"
+    subnet: "{{ phpIPAM_subnet }}"
+    section: "{{ phpIPAM_section }}"
+    hostname: "{{ phpIPAM_hostname }}"
+    description: "{{ phpIPAM_description }}"
+  register: _job_virtual_address
