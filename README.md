@@ -36,7 +36,7 @@ For Ansible 2.9 the following can be used in ``requirements.yml``:
 ```yaml
 ---
 collections:
-- name: 'https://github.com/F5SolutionsEngineering/Self-Service-Catalog-Collection/releases/<<MORE>>'
+- name: 'https://github.com/F5SolutionsEngineering/Self-Service-Catalog-Collection/blob/master/f5solutionsengineering/ss_cat/f5solutionsengineering-ss_cat-0.1.tar.gz'
 ```
 
 The collection namespace, as determined by ``galaxy.yml``, will be "f5-ss-cat".
