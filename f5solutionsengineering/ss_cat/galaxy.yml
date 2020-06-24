@@ -1,11 +1,11 @@
-namespace: f5solutionsengineering
+namespace: kreynoldsf5
 name: ss_cat
 version: 0.1.1
 readme: README.md
 authors:
 - Kevin Reynolds (@kreynoldsf5)
 description: Collection used for F5solutionengineering/Self-Service-Catalog-Examples
-license_file: LICENSE
+license_file: GPL3.txt
 tags:
   - f5
 dependencies: {}
